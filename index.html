@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>N Tools – Everything you need. One place.</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--bg:#050d12;--bg2:#0a161d;--card:#0c1a22;--text:#f2fbf6;--mut:#a9c0b6;--g:#1fff7a;--g2:#12c95d;--line:#12402b;--input:#08141a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+:root[data-theme="light"]{--bg:#f3faf6;--bg2:#e4f3ea;--card:#fff;--text:#0b1d14;--mut:#486357;--g:#0a9d4a;--g2:#087c3a;--line:#bfe3cd;--input:#f3faf6;color-scheme:light}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--text);font-family:'Poppins',system-ui,sans-serif;overflow-x:hidden;min-height:100%}
+body.lock{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+nav{display:flex;align-items:center;gap:14px;padding:14px 5vw;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;background:var(--bg)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:28px;letter-spacing:1px;flex:none}
+.logo b{color:var(--g)}
+.nl{display:flex;gap:6px;margin-left:auto;align-items:center}
+.nl a,.pill{padding:10px 18px;border-radius:14px;font-weight:500;font-size:15px;color:var(--text);border:2px solid transparent;background:none;white-space:nowrap}
+.nl a.on{border-color:var(--g);color:var(--g);box-shadow:0 0 14px #1fff7a40}
+.pill{border-color:var(--g);color:var(--g);border-radius:20px}
+.hero{position:relative;padding:50px 5vw 90px;display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center;min-height:520px;background:radial-gradient(ellipse at 75% 40%,#1fff7a2e,transparent 60%)}
+.badge{display:inline-flex;gap:8px;padding:8px 18px;border:1.5px solid var(--g);border-radius:30px;font-size:13px;font-weight:700;color:#e8ff3a;letter-spacing:.5px;background:#0e2a1a55}
+:root[data-theme="light"] .badge{color:#4a5a00}
+h1{font-size:clamp(40px,6.4vw,76px);line-height:1.05;font-weight:800;margin:22px 0 16px}
+h1 span{display:block;color:var(--g);text-shadow:0 0 30px #1fff7a60}
+.hero p.sub{font-size:20px;max-width:480px;line-height:1.4}
+.search{display:flex;align-items:center;gap:12px;margin-top:30px;max-width:560px;border:2px solid var(--g);border-radius:40px;padding:8px 8px 8px 24px;background:var(--input);box-shadow:0 0 24px #1fff7a40}
+.search input{flex:1;background:none;border:0;outline:0;color:var(--text);font-size:16px;min-width:0;padding:0;width:auto}
+.search button{width:62px;height:50px;border-radius:30px;border:0;background:linear-gradient(135deg,#2dffa0,var(--g2));font-size:24px;color:#03130a;font-weight:700}
+.art{position:relative;height:440px}
+.art svg{width:100%;height:100%;overflow:visible}
+.by{position:absolute;right:2%;top:2%;font-family:'Caveat',cursive;font-size:32px;transform:rotate(-8deg);color:var(--mut);line-height:1}
+.float{animation:fl 5s ease-in-out infinite}.f2{animation-delay:-2s}.f3{animation-delay:-3.5s}
+@keyframes fl{50%{transform:translateY(-12px)}}
+.cur{animation:bl 1s steps(2) infinite}@keyframes bl{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.float,.cur{animation:none}html{scroll-behavior:auto}.card{transition:none}}
+.sec{text-align:center;padding:10px 5vw 40px}
+.sec h2{display:flex;align-items:center;gap:24px;justify-content:center;font-size:34px;font-weight:700}
+.sec h2:before,.sec h2:after{content:"";height:2px;flex:0 1 200px;background:var(--g)}
+.sec h2 em{font-style:normal;color:var(--g)}
+.sec .s2{margin-top:6px;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1300px;margin:auto}
+.card{position:relative;padding:34px 20px 26px;border-radius:24px;border:2px solid var(--c);background:linear-gradient(160deg,color-mix(in srgb,var(--c) 22%,var(--card)),var(--card) 70%);text-align:center;transition:.25s;--c:#1fff7a}
+.card:hover{transform:translateY(-6px);box-shadow:0 10px 40px color-mix(in srgb,var(--c) 40%,transparent)}
+.card svg{width:84px;height:84px;color:var(--c)}
+.card h3{margin:16px 0 8px;font-size:22px}
+.card p{color:var(--mut);font-size:16px;min-height:52px}
+.card button{margin-top:18px;padding:11px 28px;border-radius:30px;border:2px solid var(--c);background:none;color:var(--c);font-weight:600;font-size:15px}
+.card button:hover{background:var(--c);color:#03130a}
+.tag{position:absolute;right:16px;top:14px;background:#3a1d12;color:#fff;font-size:12px;padding:5px 12px;border-radius:14px}
+.feat{display:grid;grid-template-columns:repeat(4,1fr);max-width:1300px;margin:50px auto;border:1.5px solid var(--line);border-radius:22px;background:var(--bg2);padding:22px 10px;gap:10px;width:calc(100% - 10vw)}
+.feat div{display:flex;gap:14px;align-items:center;padding:0 18px;border-right:1px solid var(--line)}
+.feat div:last-child{border:0}
+.feat svg{width:42px;height:42px;color:var(--g);flex:none}
+.feat b{display:block;font-size:16px}.feat small{color:var(--mut)}
+footer{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:30px 5vw;border-top:2px solid var(--line);color:var(--mut)}
+footer .logo{font-size:24px;color:var(--text)}
+footer small{display:block;font-weight:400;font-size:14px;color:var(--mut);letter-spacing:0}
+.modal{position:fixed;inset:0;background:#000b;backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}
+.modal.open{display:flex}
+.box{width:min(560px,100%);max-height:90vh;overflow:auto;background:var(--card);border:2px solid var(--g);border-radius:24px;padding:26px;box-shadow:0 0 50px #1fff7a30;position:relative}
+.box h3{font-size:24px;margin-bottom:16px;color:var(--g)}
+.x{position:absolute;right:16px;top:14px;background:none;border:0;color:var(--text);font-size:26px}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 5px}
+input,textarea,select{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--input);color:var(--text);font:inherit;font-size:15px}
+input:focus,textarea:focus,select:focus{outline:0;border-color:var(--g)}
+input[type=color]{padding:3px;height:46px;cursor:pointer}
+textarea{min-height:70px;resize:vertical}
+.go{margin-top:18px;width:100%;padding:13px;border-radius:14px;border:0;background:linear-gradient(135deg,#2dffa0,var(--g2));color:#03130a;font-weight:700;font-size:16px}
+.go.alt{background:none;border:2px solid var(--g);color:var(--g)}
+.go:disabled{opacity:.4;cursor:not-allowed}
+.two{display:flex;gap:10px}.two .go{margin-top:14px}
+.err{color:#ff6b6b;font-size:14px;margin-top:10px;min-height:18px}
+.pw{font-family:ui-monospace,Menlo,monospace;font-size:20px;color:var(--g);word-break:break-all;margin-top:16px;padding:16px;border-radius:14px;background:var(--input);border:1.5px dashed var(--line)}
+.chk{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px}
+.chk label{display:flex;gap:6px;align-items:center;margin:0;font-size:14px;color:var(--text)}
+.chk input{width:auto}
+.row{display:flex;gap:10px}.row>*{flex:1;min-width:0}.item{margin-top:8px}.item input{padding:10px;min-width:0}
+.rm{flex:0 0 40px;border-radius:12px;border:1.5px solid var(--line);background:none;color:#ff6b6b;font-size:20px}
+.hint{color:var(--mut);font-size:14px}
+.sheet{background:#fff;color:#111;border-radius:12px;padding:22px;margin-top:16px;font-size:14px}
+.sheet h1,.sheet h2{font-size:26px;margin:0 0 4px;color:#111;text-shadow:none;line-height:1.2}
+.sheet h3{margin:14px 0 4px;color:#0a7d3c;font-size:15px}
+.sheet p{white-space:pre-wrap;color:#333;margin:0}
+.sheet hr{border:0;border-top:1px solid #ddd;margin:10px 0}
+.sheet .meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#555;margin-bottom:10px}
+.sheet table{width:100%;border-collapse:collapse;margin-top:10px}
+.sheet td{padding:7px 4px;border-bottom:1px solid #ddd;text-align:left;color:#111}
+.sheet td:nth-child(n+2){text-align:right;white-space:nowrap}
+.sheet .tot td{font-weight:700;border-bottom:0}
+#qrCanvas{display:block;margin:14px auto 0;width:min(260px,100%);height:auto;border-radius:12px;image-rendering:pixelated}
+#qrCanvas[hidden]{display:none}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--g);color:#03130a;padding:10px 18px;border-radius:20px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:99}
+#toast.on{opacity:1}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-bottom:50px}.art{height:320px}.grid{grid-template-columns:1fr 1fr}.feat{grid-template-columns:1fr 1fr}.feat div{border:0}.sec h2:before,.sec h2:after{display:none}nav{flex-wrap:wrap}.nl{width:100%;margin-left:0;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.feat{grid-template-columns:1fr}.row{flex-wrap:wrap}.sheet{padding:14px}}
+/* Print: only the invoice/resume sheet is printed */
+@media print{
+nav,.hero,.sec,.feat,footer,#toast{display:none!important}
+html,body,:root{background:#fff!important;padding:0!important}
+.modal{position:static!important;display:block!important;background:none!important;backdrop-filter:none!important;padding:0!important}
+.box{position:static!important;max-height:none!important;overflow:visible!important;border:0!important;box-shadow:none!important;padding:0!important;background:none!important;width:100%!important}
+.x,#mb>*:not(.sheet){display:none!important}
+.sheet{margin:0!important;padding:0!important;border-radius:0!important;font-size:13px}
+}
+</style>
+</head>
+<body>
+<nav>
+<a class="logo" href="#home"><svg width="86" height="48" viewBox="0 0 86 48" aria-hidden="true"><ellipse cx="43" cy="26" rx="40" ry="14" transform="rotate(-18 43 26)" fill="none" stroke="#1fff7a" stroke-width="3"/><text x="22" y="38" font-size="40" font-weight="800" font-style="italic" fill="#1fff7a" font-family="Poppins,sans-serif">N</text></svg>N <b>TOOLS</b></a>
+<div class="nl" id="nl">
+<a class="on" href="#home">⌂ Home</a><a href="#tools">▦ Tools</a><a href="#about">ⓘ About</a><a href="#contact">✉ Contact</a>
+<button class="pill" id="theme" aria-label="Switch to light theme">☾</button>
+</div>
+</nav>
+
+<section class="hero" id="home">
+<div>
+<span class="badge">⚡ ALL-IN-ONE TOOLKIT</span>
+<h1>Everything you need.<span>One place.</span></h1>
+<p class="sub">Smart, simple and powerful tools for your everyday digital work.</p>
+<div class="search"><span aria-hidden="true">⌕</span><input id="q" placeholder="Search tools… (e.g. password, QR, invoice)" aria-label="Search tools"><button id="go" aria-label="Go to tools">→</button></div>
+</div>
+<div class="art">
+<span class="by">Built by<br>Vivek</span>
+<svg viewBox="0 0 520 440" aria-hidden="true">
+<defs><radialGradient id="gl"><stop offset="0" stop-color="#1fff7a" stop-opacity=".45"/><stop offset="1" stop-color="#1fff7a" stop-opacity="0"/></radialGradient></defs>
+<circle cx="270" cy="220" r="210" fill="url(#gl)"/>
+<circle cx="270" cy="210" r="170" fill="none" stroke="#1fff7a" stroke-width="3" opacity=".8"/>
+<g class="float"><rect x="120" y="120" width="300" height="200" rx="14" fill="#07141a" stroke="#1fff7a" stroke-width="3"/>
+<rect x="120" y="120" width="300" height="30" rx="14" fill="#0e2a1a"/><circle cx="142" cy="135" r="5" fill="#ff5f56"/><circle cx="160" cy="135" r="5" fill="#ffbd2e"/><circle cx="178" cy="135" r="5" fill="#27c93f"/>
+<g font-family="ui-monospace,Menlo,monospace" font-size="15"><text x="140" y="180" fill="#c792ea">function</text><text x="215" y="180" fill="#1fff7a">build</text><text x="262" y="180" fill="#ddd">() {</text>
+<text x="160" y="206" fill="#4aa8ff">const</text><text x="208" y="206" fill="#ddd">tools =</text><text x="272" y="206" fill="#ffb347">4</text>
+<text x="160" y="232" fill="#4aa8ff">return</text><text x="215" y="232" fill="#1fff7a">"N Tools"</text>
+<text x="140" y="258" fill="#ddd">}</text><text x="140" y="290" fill="#1fff7a">&gt; run()</text><rect class="cur" x="196" y="277" width="9" height="16" fill="#1fff7a"/></g></g>
+<path d="M90 322h360l-24 28H114z" fill="#0b1f17" stroke="#1fff7a" stroke-width="2"/>
+<g class="float f2" font-family="ui-monospace,Menlo,monospace" font-weight="700" fill="#1fff7a"><text x="400" y="110" font-size="54">&lt;/&gt;</text></g>
+<g class="float f3" font-family="ui-monospace,Menlo,monospace" font-weight="700"><text x="60" y="110" font-size="46" fill="#4aa8ff">{ }</text><text x="440" y="300" font-size="40" fill="#ffb347">;</text><text x="50" y="290" font-size="36" fill="#b57bff">[ ]</text></g>
+</svg>
+</div>
+</section>
+
+<section class="sec" id="tools">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1fff7a" stroke-width="1.8" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z M3 7l9 5 9-5 M12 12v10"/></svg>
+<h2>Explore Our <em>Tools</em></h2>
+<p class="s2">Free. Fast. No Signup Required.</p>
+<div class="grid" id="grid">
+<div class="card" data-k="password generator secure random" style="--c:#1fff7a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9a2 2 0 014 0v2"/></svg><h3>Password Generator</h3><p>Create strong &amp; random passwords</p><button onclick="openTool('pw',this)">Open tool</button></div>
+<div class="card" data-k="resume builder cv" style="--c:#2aa8ff"><span class="tag">🔥 New</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="9" r="2.5"/><path d="M7.5 17c.8-3 8.2-3 9 0M8 13h8"/></svg><h3>Resume Builder</h3><p>Build a clean resume and print it</p><button onclick="openTool('cv',this)">Open tool</button></div>
+<div class="card" data-k="invoice generator bill gst print pdf" style="--c:#a56bff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 2h9l4 4v16H6z M15 2v4h4 M9 11h6 M9 15h4 M9 7h2"/></svg><h3>Invoice Generator</h3><p>Live preview, print or download PDF</p><button onclick="openTool('inv',this)">Open tool</button></div>
+<div class="card" data-k="qr generator code png svg download" style="--c:#ff9d1f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3z M19 14h2v2 M17 19h4v2 M14 20h1"/></svg><h3>QR Generator</h3><p>Custom colours, PNG &amp; SVG download</p><button onclick="openTool('qr',this)">Open tool</button></div>
+</div>
+<p id="none" class="s2" style="display:none">No tools match your search.</p>
+</section>
+
+<div class="feat" id="about">
+<div><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg><span><b>Fast &amp; Lightweight</b><small>Instant results</small></span></div>
+<div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z M8.5 12l2.5 2.5 4.5-5"/></svg><span><b>100% Free</b><small>No hidden charges</small></span></div>
+<div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><ellipse cx="11" cy="5" rx="7" ry="3"/><path d="M4 5v6c0 1.7 3 3 7 3M4 11v6c0 1.7 3 3 7 3M16 17l5 5M21 17l-5 5"/></svg><span><b>No Database</b><small>Your data stays local</small></span></div>
+<div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 19h2"/></svg><span><b>Mobile Friendly</b><small>Works on all devices</small></span></div>
+</div>
+
+<footer id="contact">
+<div class="logo">N <b>TOOLS</b><small>Smart Tools for a Smarter You</small></div>
+<div>Made with <span style="color:#ff3b4e">♥</span> by <b style="color:var(--text)">Vivek</b></div>
+<div>© 2026 N Tools. All rights reserved.</div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Tool"><div class="box"><button class="x" onclick="closeTool()" aria-label="Close">×</button><div id="mb"></div></div></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ---------- helpers ---------- */
+function $(id){return document.getElementById(id)}
+function esc(t){return String(t).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function money(n){return"Rs. "+n.toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2})}
+var toastT;function toast(m){var t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove("on")},2200)}
+var DL=null;
+if(window.claude&&claude.use){claude.use("downloads").then(function(d){DL=d},function(){})}
+function download(data,name){
+if(!DL){toast("Downloads are not available here. Open the artifact in a browser.");return}
+DL.save({filename:name,data:data}).then(function(){toast("Saved "+name)},function(e){if(!e||e.code!=="declined")toast("Download failed. Try again or open in a browser.")});
+}
+function printSheet(title){var old=document.title;document.title=title;window.onafterprint=function(){document.title=old;window.onafterprint=null};window.print()}
+function today(){return new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10)}
+
+/* ---------- Tool 1: Password generator (crypto-secure) ---------- */
+function rnd(n){var a=new Uint32Array(1),lim=Math.floor(4294967296/n)*n,x;do{crypto.getRandomValues(a);x=a[0]}while(x>=lim);return x%n}
+function generatePassword(){
+var len=Number($("pwLen").value);
+if(!Number.isInteger(len)||len<4||len>50){$("pwErr").textContent="Enter a length between 4 and 50.";return}
+var sets=[];
+[["pU","ABCDEFGHIJKLMNOPQRSTUVWXYZ"],["pL","abcdefghijklmnopqrstuvwxyz"],["pN","0123456789"],["pS","@#$%&*!"]].forEach(function(s){if($(s[0]).checked)sets.push(s[1])});
+if(!sets.length){$("pwErr").textContent="Select at least one character type.";return}
+$("pwErr").textContent="";
+var all=sets.join(""),out=sets.map(function(s){return s[rnd(s.length)]});
+while(out.length<len)out.push(all[rnd(all.length)]);
+out=out.slice(0,len);
+for(var i=out.length-1;i>0;i--){var j=rnd(i+1),t=out[i];out[i]=out[j];out[j]=t}
+window._pw=out.join("");
+$("pwOut").innerHTML='<div class="pw">'+esc(window._pw)+'</div><button class="go" onclick="copyPw()">Copy password</button>';
+}
+function copyPw(){
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(window._pw).then(function(){toast("Password copied")},function(){toast("Copy failed. Select and copy it manually.")})}
+else toast("Copy not supported. Select and copy it manually.")}
+
+/* ---------- Tool 2: QR generator (PNG + SVG download) ---------- */
+var qrM=null;
+function makeQR(){
+var t=$("qrText").value,cv=$("qrCanvas");
+$("qrErr").textContent="";
+if(!t.trim()){qrM=null;cv.hidden=true;$("qrPng").disabled=$("qrSvg").disabled=true;return}
+try{
+var q=new QRCode(document.createElement("div"),{text:unescape(encodeURIComponent(t)),width:64,height:64,correctLevel:QRCode.CorrectLevel.H});
+var o=q._oQRCode;qrM={n:o.getModuleCount(),dark:function(r,c){return o.isDark(r,c)}};
+}catch(e){qrM=null;cv.hidden=true;$("qrPng").disabled=$("qrSvg").disabled=true;$("qrErr").textContent="Text is too long for a QR code. Shorten it and try again.";return}
+drawQR();
+}
+function drawQR(){
+var size=Number($("qrSize").value),n=qrM.n,cell=Math.ceil(size/(n+8)),px=cell*(n+8),cv=$("qrCanvas"),g=cv.getContext("2d");
+cv.width=cv.height=px;g.fillStyle=$("qrBg").value;g.fillRect(0,0,px,px);g.fillStyle=$("qrFg").value;
+for(var r=0;r<n;r++)for(var c=0;c<n;c++)if(qrM.dark(r,c))g.fillRect((c+4)*cell,(r+4)*cell,cell,cell);
+cv.hidden=false;$("qrPng").disabled=$("qrSvg").disabled=false;
+}
+function qrPng(){$("qrCanvas").toBlob(function(b){download(b,"qr-code.png")},"image/png")}
+function qrSvg(){
+var n=qrM.n,w=n+8,d="";
+for(var r=0;r<n;r++)for(var c=0;c<n;c++)if(qrM.dark(r,c))d+="M"+(c+4)+" "+(r+4)+"h1v1h-1z";
+var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+w+" "+w+'" width="'+$("qrSize").value+'" height="'+$("qrSize").value+'" shape-rendering="crispEdges"><rect width="'+w+'" height="'+w+'" fill="'+$("qrBg").value+'"/><path fill="'+$("qrFg").value+'" d="'+d+'"/></svg>';
+download(s,"qr-code.svg");
+}
+
+/* ---------- Tool 3: Resume builder (live preview + print) ---------- */
+function cvData(){var v=function(i){return $(i).value.trim()};return{name:v("cvName"),email:v("cvEmail"),phone:v("cvPhone"),address:v("cvAddress"),about:v("cvAbout"),education:v("cvEducation"),skills:v("cvSkills"),projects:v("cvProjects")}}
+function renderCv(){
+var d=cvData(),s=$("cvSheet");
+if(!d.name){s.innerHTML='<p class="hint">Your resume appears here as you type.</p>';return}
+var sec=function(h,t){return t?"<h3>"+h+"</h3><p>"+esc(t)+"</p>":""};
+s.innerHTML="<h2>"+esc(d.name)+"</h2>"+[d.email,d.phone,d.address].filter(Boolean).map(function(x){return"<p>"+esc(x)+"</p>"}).join("")+"<hr>"+sec("About me",d.about)+sec("Education",d.education)+sec("Skills",d.skills)+sec("Projects",d.projects);
+}
+function printCv(){
+var d=cvData();
+if(!d.name||!d.email||!d.phone){$("cvErr").textContent="Enter your name, email and phone first.";return}
+$("cvErr").textContent="";printSheet(d.name+" - Resume");
+}
+function pdfCv(){
+var d=cvData();
+if(!d.name||!d.email||!d.phone){$("cvErr").textContent="Enter your name, email and phone first.";return}
+$("cvErr").textContent="";
+var J=window.jspdf&&window.jspdf.jsPDF;
+if(!J){toast("PDF tool did not load. Use Print and choose Save as PDF.");return}
+var p=new J({unit:"mm",format:"a4"}),y=22;
+function room(h){if(y+h>282){p.addPage();y=20}}
+p.setFont("helvetica","bold");p.setFontSize(24);p.setTextColor(17);p.text(d.name,15,y);y+=8;
+p.setFont("helvetica","normal");p.setFontSize(10);p.setTextColor(80);
+[d.email,d.phone,d.address].filter(Boolean).forEach(function(t){p.text(t,15,y);y+=5});
+y+=2;p.setDrawColor(200);p.line(15,y,195,y);y+=8;
+[["About me",d.about],["Education",d.education],["Skills",d.skills],["Projects",d.projects]].forEach(function(s){
+if(!s[1])return;
+room(14);p.setFont("helvetica","bold");p.setFontSize(12);p.setTextColor(10,125,60);p.text(s[0],15,y);y+=6;
+p.setFont("helvetica","normal");p.setFontSize(10);p.setTextColor(40);
+p.splitTextToSize(s[1],180).forEach(function(l){room(5);p.text(l,15,y);y+=5});
+y+=5;
+});
+download(p.output("blob"),(d.name.replace(/[^\w-]+/g,"_")||"resume")+"_resume.pdf");
+}
+
+/* ---------- Tool 4: Invoice generator (live preview, print, PDF) ---------- */
+function addItem(){
+var d=document.createElement("div");d.className="item row";
+d.innerHTML='<input class="ip" placeholder="Product" aria-label="Product" style="flex:2"><input class="iq" type="number" min="1" placeholder="Qty" aria-label="Quantity"><input class="ipr" type="number" min="0" placeholder="Price" aria-label="Price"><button class="rm" aria-label="Remove product" onclick="removeItem(this)">×</button>';
+$("items").appendChild(d);
+}
+function removeItem(b){if(document.querySelectorAll("#items .item").length>1){b.parentNode.remove();renderInv()}}
+function readInv(){
+var items=[];
+document.querySelectorAll("#items .item").forEach(function(r){
+var n=r.querySelector(".ip").value.trim(),q=Number(r.querySelector(".iq").value),ps=r.querySelector(".ipr").value,p=Number(ps);
+if(n&&q>0&&ps!==""&&p>=0)items.push({n:n,q:q,p:p,a:Math.round(q*p*100)/100});
+});
+var sub=items.reduce(function(s,i){return s+i.a},0),rate=Math.max(0,Number($("gr").value)||0),gst=Math.round(sub*rate)/100;
+return{cn:$("cn").value.trim(),no:$("ino").value.trim()||"INVOICE",dt:$("idt").value,rate:rate,items:items,sub:sub,gst:gst,tot:sub+gst};
+}
+function renderInv(){
+var d=readInv(),s=$("invSheet");
+if(!d.cn&&!d.items.length){s.innerHTML='<p class="hint">Your invoice appears here as you type.</p>';return}
+s.innerHTML='<h2>INVOICE</h2><div class="meta"><span>No: '+esc(d.no)+'</span><span>Date: '+esc(d.dt)+'</span></div><p>Billed to: <b>'+esc(d.cn||"-")+'</b></p><table><tr><td><b>Product</b></td><td><b>Qty</b></td><td><b>Price</b></td><td><b>Amount</b></td></tr>'+
+d.items.map(function(i){return"<tr><td>"+esc(i.n)+"</td><td>"+i.q+"</td><td>"+money(i.p)+"</td><td>"+money(i.a)+"</td></tr>"}).join("")+
+'<tr><td colspan="3">Subtotal</td><td>'+money(d.sub)+'</td></tr><tr><td colspan="3">GST ('+d.rate+'%)</td><td>'+money(d.gst)+'</td></tr><tr class="tot"><td colspan="3">Total</td><td>'+money(d.tot)+"</td></tr></table>";
+}
+function invOk(){
+var d=readInv();
+if(!d.cn||!d.items.length){$("invErr").textContent="Enter a customer name and at least one product with quantity and price.";return null}
+$("invErr").textContent="";return d;
+}
+function printInv(){var d=invOk();if(d)printSheet(d.no)}
+function pdfInv(){
+var d=invOk();if(!d)return;
+var J=window.jspdf&&window.jspdf.jsPDF;
+if(!J){toast("PDF tool did not load. Use Print and choose Save as PDF.");return}
+var p=new J({unit:"mm",format:"a4"}),y=22;
+p.setFont("helvetica","bold");p.setFontSize(22);p.text("INVOICE",15,y);
+p.setFont("helvetica","normal");p.setFontSize(10);p.text("No: "+d.no,195,y-6,{align:"right"});p.text("Date: "+d.dt,195,y,{align:"right"});
+y+=14;p.text("Billed to",15,y);p.setFont("helvetica","bold");p.setFontSize(13);p.text(d.cn,15,y+6);y+=20;
+function head(){p.setFont("helvetica","bold");p.setFontSize(10);p.text("Product",15,y);p.text("Qty",120,y,{align:"right"});p.text("Price",155,y,{align:"right"});p.text("Amount",195,y,{align:"right"});p.line(15,y+2,195,y+2);y+=8;p.setFont("helvetica","normal")}
+head();
+d.items.forEach(function(i){
+var L=p.splitTextToSize(i.n,95);
+if(y+L.length*5>275){p.addPage();y=20;head()}
+p.text(L,15,y);p.text(String(i.q),120,y,{align:"right"});p.text(money(i.p),155,y,{align:"right"});p.text(money(i.a),195,y,{align:"right"});y+=L.length*5+2;
+});
+if(y>245){p.addPage();y=20}
+p.line(120,y,195,y);y+=7;
+p.text("Subtotal",120,y);p.text(money(d.sub),195,y,{align:"right"});y+=6;
+p.text("GST ("+d.rate+"%)",120,y);p.text(money(d.gst),195,y,{align:"right"});y+=8;
+p.setFont("helvetica","bold");p.setFontSize(12);p.text("Total",120,y);p.text(money(d.tot),195,y,{align:"right"});
+download(p.output("blob"),(d.no.replace(/[^\w-]/g,"")||"invoice")+".pdf");
+}
+
+/* ---------- Modal + tool templates ---------- */
+var T={
+pw:'<h3>Password Generator</h3><label for="pwLen">Password length (4–50)</label><input id="pwLen" type="number" min="4" max="50" value="16"><div class="chk"><label><input type="checkbox" id="pU" checked>A–Z</label><label><input type="checkbox" id="pL" checked>a–z</label><label><input type="checkbox" id="pN" checked>0–9</label><label><input type="checkbox" id="pS" checked>@#$%&amp;*!</label></div><button class="go" onclick="generatePassword()">Generate</button><div class="err" id="pwErr"></div><div id="pwOut"></div>',
+qr:'<h3>QR Generator</h3><label for="qrText">Text or link</label><input id="qrText" placeholder="https://example.com"><div class="row"><div><label for="qrSize">Size</label><select id="qrSize"><option value="256">256 px</option><option value="512" selected>512 px</option><option value="1024">1024 px</option></select></div><div><label for="qrFg">Dot colour</label><input id="qrFg" type="color" value="#000000"></div><div><label for="qrBg">Background</label><input id="qrBg" type="color" value="#ffffff"></div></div><div class="err" id="qrErr"></div><canvas id="qrCanvas" hidden aria-label="QR code preview"></canvas><div class="two"><button class="go" id="qrPng" disabled onclick="qrPng()">Download PNG</button><button class="go alt" id="qrSvg" disabled onclick="qrSvg()">Download SVG</button></div>',
+cv:'<h3>Resume Builder</h3><div class="row"><div><label for="cvName">Name *</label><input id="cvName"></div><div><label for="cvPhone">Phone *</label><input id="cvPhone"></div></div><label for="cvEmail">Email *</label><input id="cvEmail" type="email"><label for="cvAddress">Address</label><input id="cvAddress"><label for="cvAbout">About me</label><textarea id="cvAbout"></textarea><label for="cvEducation">Education</label><textarea id="cvEducation"></textarea><label for="cvSkills">Skills</label><textarea id="cvSkills"></textarea><label for="cvProjects">Projects</label><textarea id="cvProjects"></textarea><div class="err" id="cvErr"></div><div class="two"><button class="go" onclick="printCv()">Print</button><button class="go alt" onclick="pdfCv()">Download PDF</button></div><div class="sheet" id="cvSheet"></div>',
+inv:'<h3>Invoice Generator</h3><div class="row"><div><label for="cn">Customer name</label><input id="cn"></div><div><label for="ino">Invoice no.</label><input id="ino"></div></div><div class="row"><div><label for="idt">Date</label><input id="idt" type="date"></div><div><label for="gr">GST %</label><input id="gr" type="number" min="0" max="100" value="18"></div></div><label>Products (Qty × Price in Rs.)</label><div id="items"></div><button class="go alt" style="border-style:dashed" onclick="addItem()">+ Add product</button><div class="err" id="invErr"></div><div class="two"><button class="go" onclick="printInv()">Print</button><button class="go alt" onclick="pdfInv()">Download PDF</button></div><div class="sheet" id="invSheet"></div>'
+};
+var cur="",lastFocus=null;
+function openTool(k,btn){
+cur=k;lastFocus=btn||document.activeElement;
+$("mb").innerHTML=T[k];
+if(k==="inv"){addItem();$("idt").value=today();$("ino").value="INV-"+today().replace(/-/g,"")+"-001";renderInv()}
+if(k==="cv")renderCv();
+if(k==="pw")generatePassword();
+$("modal").classList.add("open");document.body.classList.add("lock");
+var f=$("mb").querySelector("input:not([type=checkbox]),textarea");if(f)f.focus();
+}
+function closeTool(){
+$("modal").classList.remove("open");document.body.classList.remove("lock");cur="";
+if(lastFocus&&lastFocus.focus)lastFocus.focus();
+}
+$("modal").addEventListener("click",function(e){if(e.target===this)closeTool()});
+$("modal").addEventListener("keydown",function(e){
+if(e.key==="Escape"){closeTool();return}
+if(e.key!=="Tab")return;
+var f=Array.prototype.filter.call($("modal").querySelectorAll("button,input,textarea,select"),function(x){return!x.disabled&&x.getClientRects().length});
+if(!f.length)return;
+var a=f[0],z=f[f.length-1];
+if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}
+else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
+});
+$("mb").addEventListener("input",function(){
+if(cur==="inv")renderInv();
+else if(cur==="cv")renderCv();
+else if(cur==="qr")makeQR();
+});
+
+/* ---------- Page UI ---------- */
+$("q").addEventListener("input",function(){
+var s=this.value.toLowerCase().trim(),n=0;
+document.querySelectorAll(".card").forEach(function(c){var m=!s||c.dataset.k.indexOf(s)>-1;c.style.display=m?"":"none";if(m)n++});
+$("none").style.display=n?"none":"block";
+});
+function toTools(){$("tools").scrollIntoView()}
+$("go").addEventListener("click",toTools);
+$("q").addEventListener("keydown",function(e){if(e.key==="Enter")toTools()});
+
+function setTheme(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="light"?"☀":"☾";$("theme").setAttribute("aria-label",t==="light"?"Switch to dark theme":"Switch to light theme");try{localStorage.setItem("ntheme",t)}catch(e){}}
+(function(){var t=null;try{t=localStorage.getItem("ntheme")}catch(e){}
+if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";setTheme(t)})();
+$("theme").addEventListener("click",function(){setTheme(document.documentElement.dataset.theme==="light"?"dark":"light")});
+
+if("IntersectionObserver"in window){
+var links=document.querySelectorAll("#nl a"),io=new IntersectionObserver(function(es){
+es.forEach(function(e){if(e.isIntersecting)links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)})});
+},{rootMargin:"-35% 0px -60% 0px"});
+["home","tools","about","contact"].forEach(function(id){io.observe($(id))});
+}
+</script>
+</body>
+</html>
