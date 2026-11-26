@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>N Tools – Everything you need. One place.</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--bg:#050d12;--bg2:#0a161d;--card:#0c1a22;--text:#f2fbf6;--mut:#a9c0b6;--g:#1fff7a;--g2:#12c95d;--line:#12402b;--input:#08141a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+:root[data-theme="light"]{--bg:#f3faf6;--bg2:#e4f3ea;--card:#fff;--text:#0b1d14;--mut:#486357;--g:#0a9d4a;--g2:#087c3a;--line:#bfe3cd;--input:#f3faf6;color-scheme:light}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--text);font-family:'Poppins',system-ui,sans-serif;overflow-x:hidden;min-height:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+nav{display:flex;align-items:center;gap:14px;padding:14px 5vw;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;background:var(--bg);flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:28px;letter-spacing:1px}
+.logo b{color:var(--g)}
+.nl{display:flex;gap:6px;margin-left:auto;align-items:center;flex-wrap:wrap}
+.nl a,.pill{padding:10px 18px;border-radius:14px;font-weight:500;font-size:15px;color:var(--text);border:2px solid transparent;background:none}
+.nl a.on{border-color:var(--g);color:var(--g);box-shadow:0 0 14px #1fff7a40}
+.pill{border-color:var(--g);color:var(--g);border-radius:20px}
+.hero{position:relative;padding:50px 5vw 90px;display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center;min-height:520px;background:radial-gradient(ellipse at 75% 40%,#1fff7a2e,transparent 60%)}
+.badge{display:inline-flex;gap:8px;padding:8px 18px;border:1.5px solid var(--g);border-radius:30px;font-size:13px;font-weight:700;color:#e8ff3a;letter-spacing:.5px;background:#0e2a1a55}
+h1{font-size:clamp(40px,6.4vw,76px);line-height:1.05;font-weight:800;margin:22px 0 16px}
+h1 span{display:block;color:var(--g);text-shadow:0 0 30px #1fff7a60}
+.hero p.sub{font-size:20px;color:var(--text);max-width:480px;line-height:1.4}
+.search{display:flex;align-items:center;gap:12px;margin-top:30px;max-width:560px;border:2px solid var(--g);border-radius:40px;padding:8px 8px 8px 24px;background:var(--input);box-shadow:0 0 24px #1fff7a40}
+.search input{flex:1;background:none;border:0;outline:0;color:var(--text);font-size:16px;font-family:inherit;min-width:0}
+.search button{width:62px;height:50px;border-radius:30px;border:0;background:linear-gradient(135deg,#2dffa0,var(--g2));font-size:24px;color:#03130a;font-weight:700}
+.art{position:relative;height:440px}
+.art svg{width:100%;height:100%;overflow:visible}
+.by{position:absolute;right:2%;top:2%;font-family:'Caveat',cursive;font-size:32px;transform:rotate(-8deg);color:var(--mut);line-height:1}
+.float{animation:fl 5s ease-in-out infinite}.f2{animation-delay:-2s}.f3{animation-delay:-3.5s}
+@keyframes fl{50%{transform:translateY(-12px)}}
+.cur{animation:bl 1s steps(2) infinite}@keyframes bl{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.float,.cur{animation:none}}
+.sec{text-align:center;padding:10px 5vw 40px}
+.sec h2{display:flex;align-items:center;gap:24px;justify-content:center;font-size:34px;font-weight:700}
+.sec h2:before,.sec h2:after{content:"";height:2px;flex:0 1 200px;background:var(--g)}
+.sec h2 em{font-style:normal;color:var(--g)}
+.sec .s2{margin-top:6px;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1300px;margin:auto}
+.card{position:relative;padding:34px 20px 26px;border-radius:24px;border:2px solid var(--c);background:linear-gradient(160deg,color-mix(in srgb,var(--c) 22%,var(--card)),var(--card) 70%);text-align:center;transition:.25s;--c:#1fff7a}
+.card:hover{transform:translateY(-6px);box-shadow:0 10px 40px color-mix(in srgb,var(--c) 40%,transparent)}
+.card svg{width:84px;height:84px;color:var(--c)}
+.card h3{margin:16px 0 8px;font-size:22px}
+.card p{color:var(--mut);font-size:16px;min-height:52px}
+.card button{margin-top:18px;padding:11px 28px;border-radius:30px;border:2px solid var(--c);background:none;color:var(--c);font-weight:600;font-size:15px}
+.card button:hover{background:var(--c);color:#03130a}
+.tag{position:absolute;right:16px;top:14px;background:#3a1d12;color:#fff;font-size:12px;padding:5px 12px;border-radius:14px}
+.feat{display:grid;grid-template-columns:repeat(4,1fr);max-width:1300px;margin:50px auto;border:1.5px solid var(--line);border-radius:22px;background:var(--bg2);padding:22px 10px;gap:10px;width:calc(100% - 10vw)}
+.feat div{display:flex;gap:14px;align-items:center;padding:0 18px;border-right:1px solid var(--line)}
+.feat div:last-child{border:0}
+.feat svg{width:42px;height:42px;color:var(--g);flex:none}
+.feat b{display:block;font-size:16px}.feat small{color:var(--mut)}
+footer{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:30px 5vw;border-top:2px solid var(--line);color:var(--mut)}
+footer .logo{font-size:24px;color:var(--text)}
+footer small{display:block;font-weight:400;font-size:14px;color:var(--mut);letter-spacing:0}
+.modal{position:fixed;inset:0;background:#000b;backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}
+.modal.open{display:flex}
+.box{width:min(560px,100%);max-height:90vh;overflow:auto;background:var(--card);border:2px solid var(--g);border-radius:24px;padding:26px;box-shadow:0 0 50px #1fff7a30;position:relative}
+.box h3{font-size:24px;margin-bottom:16px;color:var(--g)}
+.x{position:absolute;right:16px;top:14px;background:none;border:0;color:var(--text);font-size:26px}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 5px}
+input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--input);color:var(--text);font:inherit;font-size:15px}
+input:focus,textarea:focus{outline:0;border-color:var(--g)}
+textarea{min-height:70px;resize:vertical}
+.go{margin-top:18px;width:100%;padding:13px;border-radius:14px;border:0;background:linear-gradient(135deg,#2dffa0,var(--g2));color:#03130a;font-weight:700;font-size:16px}
+.err{color:#ff6b6b;font-size:14px;margin-top:10px;min-height:18px}
+.out{margin-top:16px;padding:16px;border-radius:14px;background:var(--input);border:1.5px dashed var(--line);word-break:break-all}
+.pw{font-family:ui-monospace,Menlo,monospace;font-size:20px;color:var(--g)}
+.row{display:flex;gap:10px}.row>*{flex:1}.item{margin-top:8px}.item input{padding:10px;min-width:0}.rm{flex:0 0 40px;border-radius:12px;border:1.5px solid var(--line);background:none;color:#ff6b6b;font-size:20px}
+.resume h1{font-size:28px;margin:0 0 4px}.resume h3{margin:14px 0 4px;color:var(--g)}.resume p{font-size:14px;color:var(--mut);white-space:pre-wrap}.resume hr{border:0;border-top:1px solid var(--line);margin:10px 0}
+table{width:100%;border-collapse:collapse;font-size:15px}td{padding:6px 0;border-bottom:1px solid var(--line)}td:last-child{text-align:right}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-bottom:50px}.art{height:320px}.grid{grid-template-columns:1fr 1fr}.feat{grid-template-columns:1fr 1fr}.feat div{border:0}.sec h2:before,.sec h2:after{display:none}.nl a:not(.on){display:none}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.feat{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#home"><svg width="86" height="48" viewBox="0 0 86 48"><ellipse cx="43" cy="26" rx="40" ry="14" transform="rotate(-18 43 26)" fill="none" stroke="#1fff7a" stroke-width="3"/><text x="22" y="38" font-size="40" font-weight="800" font-style="italic" fill="#1fff7a" font-family="Poppins,sans-serif">N</text></svg>N <b>TOOLS</b></a>
+  <div class="nl">
+    <a class="on" href="#home">⌂ Home</a><a href="#tools">▦ Tools ▾</a><a href="#about">ⓘ About</a><a href="#contact">✉ Contact</a>
+    <button class="pill" id="theme" aria-label="Toggle theme">☾</button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div>
+    <span class="badge">⚡ ALL-IN-ONE TOOLKIT</span>
+    <h1>Everything you need.<span>One place.</span></h1>
+    <p class="sub">Smart, simple and powerful tools for your everyday digital work.</p>
+    <div class="search"><span>⌕</span><input id="q" placeholder="Search tools… (e.g. password, QR, invoice)" aria-label="Search tools"><button onclick="document.getElementById('tools').scrollIntoView()" aria-label="Go">→</button></div>
+  </div>
+  <div class="art">
+    <span class="by">Built by<br>Vivek</span>
+    <svg viewBox="0 0 520 440" aria-hidden="true">
+      <defs><radialGradient id="gl"><stop offset="0" stop-color="#1fff7a" stop-opacity=".45"/><stop offset="1" stop-color="#1fff7a" stop-opacity="0"/></radialGradient></defs>
+      <circle cx="270" cy="220" r="210" fill="url(#gl)"/>
+      <circle cx="270" cy="210" r="170" fill="none" stroke="#1fff7a" stroke-width="3" opacity=".8"/>
+      <g class="float"><rect x="120" y="120" width="300" height="200" rx="14" fill="#07141a" stroke="#1fff7a" stroke-width="3"/>
+        <rect x="120" y="120" width="300" height="30" rx="14" fill="#0e2a1a"/><circle cx="142" cy="135" r="5" fill="#ff5f56"/><circle cx="160" cy="135" r="5" fill="#ffbd2e"/><circle cx="178" cy="135" r="5" fill="#27c93f"/>
+        <g font-family="ui-monospace,Menlo,monospace" font-size="15"><text x="140" y="180" fill="#c792ea">function</text><text x="215" y="180" fill="#1fff7a">build</text><text x="262" y="180" fill="#ddd">() {</text>
+        <text x="160" y="206" fill="#4aa8ff">const</text><text x="208" y="206" fill="#ddd">tools =</text><text x="272" y="206" fill="#ffb347">4</text>
+        <text x="160" y="232" fill="#4aa8ff">return</text><text x="215" y="232" fill="#1fff7a">"N Tools"</text>
+        <text x="140" y="258" fill="#ddd">}</text><text x="140" y="290" fill="#1fff7a">&gt; run()</text><rect class="cur" x="196" y="277" width="9" height="16" fill="#1fff7a"/></g></g>
+      <path d="M90 322h360l-24 28H114z" fill="#0b1f17" stroke="#1fff7a" stroke-width="2"/>
+      <g class="float f2" font-family="ui-monospace,Menlo,monospace" font-weight="700" fill="#1fff7a"><text x="400" y="110" font-size="54">&lt;/&gt;</text></g>
+      <g class="float f3" font-family="ui-monospace,Menlo,monospace" font-weight="700"><text x="60" y="110" font-size="46" fill="#4aa8ff">{ }</text><text x="440" y="300" font-size="40" fill="#ffb347">;</text><text x="50" y="290" font-size="36" fill="#b57bff">[ ]</text></g>
+    </svg>
+  </div>
+</section>
+
+<section class="sec" id="tools">
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1fff7a" stroke-width="1.8"><path d="M12 2l9 5v10l-9 5-9-5V7z M3 7l9 5 9-5 M12 12v10"/></svg>
+  <h2>Explore Our <em>Tools</em></h2>
+  <p class="s2">Free. Fast. No Signup Required.</p>
+  <div class="grid" id="grid">
+    <div class="card" data-k="password generator secure random" style="--c:#1fff7a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.500-2-8-6-8-11V5z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9a2 2 0 014 0v2"/></svg><h3>Password Generator</h3><p>Create strong &amp; random passwords</p><button onclick="openTool('pw')">Open Tool →</button></div>
+    <div class="card" data-k="resume builder cv" style="--c:#2aa8ff"><span class="tag">🔥 New</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="9" r="2.500"/><path d="M7.500 17c.8-3 8.200-3 9 0M8 13h8"/></svg><h3>Resume Builder</h3><p>Build a clean resume in seconds</p><button onclick="openTool('cv')">Open Tool →</button></div>
+    <div class="card" data-k="invoice generator bill gst" style="--c:#a56bff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2h9l4 4v16H6z M15 2v4h4 M9 11h6 M9 15h4 M9 7h2"/></svg><h3>Invoice Generator</h3><p>Create professional invoices</p><button onclick="openTool('inv')">Open Tool →</button></div>
+    <div class="card" data-k="qr generator code" style="--c:#ff9d1f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3z M19 14h2v2 M17 19h4v2 M14 20h1"/></svg><h3>QR Generator</h3><p>Generate custom QR codes</p><button onclick="openTool('qr')">Open Tool →</button></div>
+  </div>
+  <p id="none" class="s2" style="display:none">No tools match your search.</p>
+</section>
+
+<div class="feat" id="about">
+  <div><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg><span><b>Fast &amp; Lightweight</b><small>Instant results</small></span></div>
+  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 3v6c0 5-3.500 9-8 11-4.500-2-8-6-8-11V5z M8.500 12l2.500 2.500 4.500-5"/></svg><span><b>100% Free</b><small>No hidden charges</small></span></div>
+  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="11" cy="5" rx="7" ry="3"/><path d="M4 5v6c0 1.700 3 3 7 3M4 11v6c0 1.700 3 3 7 3M16 17l5 5M21 17l-5 5"/></svg><span><b>No Database</b><small>Your data stays local</small></span></div>
+  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 19h2"/></svg><span><b>Mobile Friendly</b><small>Works on all devices</small></span></div>
+</div>
+
+<footer id="contact">
+  <div class="logo">N <b>TOOLS</b><small>Smart Tools for a Smarter You</small></div>
+  <div>♥ Made with <span style="color:#ff3b4e">♥</span> by <b style="color:var(--text)">Vivek</b></div>
+  <div>© 2026 N Tools. All rights reserved.</div>
+</footer>
+
+<div class="modal" id="modal"><div class="box"><button class="x" onclick="closeTool()" aria-label="Close">×</button><div id="mb"></div></div></div>
+
+<script>
+function $(id){return document.getElementById(id)}
+function escapeHTML(t){return t.replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+
+// ---- Tool 1: Password generator ----
+function generatePassword(){
+  var length=Number($("pwLen").value);
+  if(!Number.isInteger(length)||length<4||length>50){$("pwErr").textContent="Please enter a length between 4 and 50";return}
+  $("pwErr").textContent="";
+  var uppercase="ABCDEFGHIJKLMNOPQRSTUVWXYZ",lowercase="abcdefghijklmnopqrstuvwxyz",numbers="0123456789",symbols="@#$%&*!";
+  var allCharacters=uppercase+lowercase+numbers+symbols,password="";
+  for(var i=0;i<length;i++){password+=allCharacters[Math.floor(Math.random()*allCharacters.length)]}
+  $("pwOut").innerHTML='<div class="pw">'+escapeHTML(password)+'</div><button class="go" style="margin-top:12px" onclick="copyPw()">Copy</button>';
+  window._pw=password;return password;
+}
+function copyPw(){try{navigator.clipboard.writeText(window._pw)}catch(e){}}
+
+// ---- Tool 2: QR generator ----
+function generateQR(){
+  var text=$("qrText").value,qrBox=$("qrCode");
+  if(text.trim()===""){$("qrErr").textContent="Please enter some text first.";return}
+  $("qrErr").textContent="";qrBox.innerHTML="";
+  new QRCode(qrBox,{text:text,width:200,height:200,colorDark:"#000000",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});
+}
+
+// ---- Tool 3: Resume builder ----
+function generateResume(){
+  var v=function(i){return $(i).value.trim()};
+  var name=v("name"),email=v("email"),phone=v("phone"),address=v("address"),education=v("education"),skills=v("skills"),about=v("about"),projects=v("projects");
+  if(name===""||email===""||phone===""){$("cvErr").textContent="Please fill in your basic details.";return}
+  $("cvErr").textContent="";
+  $("resumePreview").innerHTML='<div class="resume"><h1>'+escapeHTML(name)+'</h1><p>'+escapeHTML(email)+'</p><p>'+escapeHTML(phone)+'</p><p>'+escapeHTML(address)+'</p><hr><h3>About Me</h3><p>'+escapeHTML(about)+'</p><h3>Education</h3><p>'+escapeHTML(education)+'</p><h3>Skills</h3><p>'+escapeHTML(skills)+'</p><h3>Projects</h3><p>'+escapeHTML(projects)+'</p></div>';
+}
+
+// ---- Tool 4: Invoice generator (multiple products) ----
+function addItem(){
+  var d=document.createElement("div");d.className="item row";
+  d.innerHTML='<input class="ip" placeholder="Product" style="flex:2"><input class="iq" type="number" min="1" placeholder="Qty"><input class="ipr" type="number" min="0" placeholder="Price"><button class="rm" aria-label="Remove" onclick="if(document.querySelectorAll(\'#items .item\').length>1)this.parentNode.remove()">×</button>';
+  $("items").appendChild(d);
+}
+function generateInvoice(){
+  var customerName=$("cn").value.trim(),items=[],valid=customerName!=="";
+  document.querySelectorAll("#items .item").forEach(function(r){var name=r.querySelector(".ip").value.trim(),qs=r.querySelector(".iq").value,ps=r.querySelector(".ipr").value,quantity=Number(qs),price=Number(ps);if(!name||qs===""||ps===""||!Number.isFinite(quantity)||!Number.isFinite(price)||quantity<=0||price<0){valid=false;return}items.push({name:name,quantity:quantity,price:price,amount:quantity*price})});
+  if(!valid||items.length===0){$("invErr").textContent="Please enter valid details.";return}
+  $("invErr").textContent="";
+  var subtotal=items.reduce(function(s,i){return s+i.amount},0),gst=subtotal*18/100,totalAmount=subtotal+gst,f=function(n){return"Rs. "+n.toFixed(2)};
+  var rowsHtml=items.map(function(i){return'<tr><td>'+escapeHTML(i.name)+'</td><td>'+i.quantity+'</td><td>'+f(i.price)+'</td><td>'+f(i.amount)+'</td></tr>'}).join("");
+  $("invOut").innerHTML='<p style="margin-bottom:8px">Customer: <b>'+escapeHTML(customerName)+'</b></p><table><tr><td><b>Product</b></td><td><b>Qty</b></td><td><b>Price</b></td><td><b>Amount</b></td></tr>'+rowsHtml+'<tr><td colspan="3">Subtotal</td><td>'+f(subtotal)+'</td></tr><tr><td colspan="3">GST (18%)</td><td>'+f(gst)+'</td></tr><tr><td colspan="3"><b>Total Amount</b></td><td><b style="color:var(--g)">'+f(totalAmount)+'</b></td></tr></table>';
+}
+
+// ---- UI ----
+var T={
+pw:'<h3>Password Generator</h3><label for="pwLen">Password length (4–50)</label><input id="pwLen" type="number" value="16"><button class="go" onclick="generatePassword()">Generate</button><div class="err" id="pwErr"></div><div id="pwOut"></div>',
+qr:'<h3>QR Generator</h3><label for="qrText">Text or link</label><input id="qrText" placeholder="https://example.com"><button class="go" onclick="generateQR()">Generate QR</button><div class="err" id="qrErr"></div><div id="qrCode" style="background:#fff;padding:12px;border-radius:12px;width:fit-content;margin:12px auto 0"></div>',
+cv:'<h3>Resume Builder</h3><div class="row"><div><label for="name">Name *</label><input id="name"></div><div><label for="phone">Phone *</label><input id="phone"></div></div><label for="email">Email *</label><input id="email" type="email"><label for="address">Address</label><input id="address"><label for="about">About me</label><textarea id="about"></textarea><label for="education">Education</label><textarea id="education"></textarea><label for="skills">Skills</label><textarea id="skills"></textarea><label for="projects">Projects</label><textarea id="projects"></textarea><button class="go" onclick="generateResume()">Generate Resume</button><div class="err" id="cvErr"></div><div class="out" id="resumePreview" style="display:none"></div>',
+inv:'<h3>Invoice Generator</h3><label for="cn">Customer name</label><input id="cn"><label>Products (Qty × Price in Rs.)</label><div id="items"></div><button class="go" style="background:none;border:2px dashed var(--g);color:var(--g);margin-top:10px" onclick="addItem()">+ Add product</button><button class="go" onclick="generateInvoice()">Generate Invoice</button><div class="err" id="invErr"></div><div class="out" id="invOut" style="display:none"></div>'
+};
+function openTool(k){$("mb").innerHTML=T[k];$("modal").classList.add("open");if(k==="inv")addItem();
+  var o=$("resumePreview")||$("invOut");if(o){new MutationObserver(function(){o.style.display="block"}).observe(o,{childList:true})}}
+function closeTool(){$("modal").classList.remove("open")}
+$("modal").addEventListener("click",function(e){if(e.target===this)closeTool()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeTool()});
+$("q").addEventListener("input",function(){var s=this.value.toLowerCase().trim(),n=0;
+  document.querySelectorAll(".card").forEach(function(c){var m=!s||c.dataset.k.indexOf(s)>-1;c.style.display=m?"":"none";if(m)n++});
+  $("none").style.display=n?"none":"block"});
+$("theme").addEventListener("click",function(){var r=document.documentElement,l=r.dataset.theme==="light";r.dataset.theme=l?"dark":"light";this.textContent=l?"☾":"☀"});
+</script>
+</body>
+</html>
